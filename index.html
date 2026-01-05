@@ -6,7 +6,6 @@
     <title>ZUBORON & MOFUN | official site</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* カスタムフォントと基本設定 */
         @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap');
 
         body {
@@ -19,26 +18,20 @@
             font-family: 'Dela Gothic One', cursive;
         }
 
-        /* ネオブルータリズム・カスタムユーティリティ */
-        .neo-border {
-            border: 4px solid #000;
-        }
+        /* --- ネオブルータリズム・デザイン設定 --- */
+        .neo-border { border: 4px solid #000; }
         
         .neo-shadow {
             box-shadow: 8px 8px 0px 0px #000;
             transition: all 0.2s ease;
         }
-
         .neo-shadow:hover {
             box-shadow: 4px 4px 0px 0px #000;
             transform: translate(4px, 4px);
         }
+        .neo-shadow-static { box-shadow: 12px 12px 0px 0px #000; }
 
-        .neo-shadow-static {
-            box-shadow: 12px 12px 0px 0px #000;
-        }
-
-        /* スクロールアニメーション用クラス */
+        /* --- アニメーション設定 --- */
         .reveal {
             opacity: 0;
             transform: translateY(50px) scale(0.95);
@@ -49,25 +42,19 @@
             transform: translateY(0) scale(1);
         }
 
-        /* マーキーアニメーション */
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 15s linear infinite;
-        }
+        /* マーキー（流れる文字） */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 15s linear infinite; }
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* キャラクターカラー */
-        .bg-zuboron { background-color: #6B8E23; } /* オリーブグリーン */
-        .bg-mofun { background-color: #7BB8B8; }   /* くすみ水色 */
-        .bg-pop-red { background-color: #D94426; } /* 朱赤 */
-        .bg-pop-yellow { background-color: #F2C94C; } /* マスタード */
+        /* --- カラーパレット --- */
+        .bg-zuboron { background-color: #6B8E23; }
+        .bg-mofun { background-color: #7BB8B8; }
+        .bg-pop-red { background-color: #D94426; }
+        .bg-pop-yellow { background-color: #F2C94C; }
     </style>
 </head>
 <body class="text-black selection:bg-black selection:text-white">
@@ -97,7 +84,6 @@
             
             <div class="relative w-full max-w-2xl mx-auto aspect-video bg-white neo-border neo-shadow-static flex items-center justify-center overflow-hidden group">
                 <div class="absolute inset-0 bg-[url('hero.png')] bg-contain bg-no-repeat bg-center group-hover:scale-105 transition-transform duration-500"></div>
-                
                 <div class="absolute -bottom-4 -right-4 bg-zuboron text-white neo-border px-6 py-3 font-bold rotate-6 text-2xl">
                     NEW!
                 </div>
@@ -121,9 +107,8 @@
     <section class="py-24 px-4 bg-pop-yellow">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
             
-                        <div class="reveal bg-white neo-border p-8 neo-shadow-static rotate-1 hover:rotate-0 transition-transform duration-300">
+            <div class="reveal bg-white neo-border p-8 neo-shadow-static rotate-1 hover:rotate-0 transition-transform duration-300">
                 <img src="zuboron_school.png" alt="ズボロン" class="w-full h-auto neo-border mb-6 object-contain">
-                
                 <h2 class="text-5xl mb-4">ズボロン</h2>
                 <div class="flex gap-2 mb-4 flex-wrap">
                     <span class="bg-black text-white px-3 py-1 font-bold text-sm">性格: ズボラ</span>
@@ -134,10 +119,8 @@
                 </p>
             </div>
 
-
             <div class="reveal bg-white neo-border p-8 neo-shadow-static -rotate-1 hover:rotate-0 transition-transform duration-300 md:mt-16">
                 <img src="mofun.jpeg" alt="モフン" class="w-full h-48 neo-border mb-6 object-contain bg-mofun">
-                
                 <h2 class="text-5xl mb-4">モフン</h2>
                 <div class="flex gap-2 mb-4 flex-wrap">
                     <span class="bg-black text-white px-3 py-1 font-bold text-sm">性格: 天然</span>
@@ -148,7 +131,6 @@
                 </p>
             </div>
 
-
         </div>
     </section>
 
@@ -157,48 +139,31 @@
             <h2 class="text-6xl md:text-8xl mb-16 text-center reveal">THE ARCHIVE</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
                 <div onclick="alert('現在、絶賛執筆中！\nインスタグラムでの連載をお楽しみに！')" class="reveal bg-white aspect-square neo-border neo-shadow flex flex-col items-center justify-center font-bold group overflow-hidden cursor-pointer">
-    <span class="text-4xl mb-2 group-hover:rotate-12 transition-transform">✏️</span>
-    <div class="text-xl">4コマ漫画</div>
-</div>
+                    <span class="text-4xl mb-2 group-hover:rotate-12 transition-transform">✏️</span>
+                    <div class="text-xl">4コマ漫画</div>
+                </div>
 
                 <div onclick="window.open('https://suzuri.jp/Patty17')" class="reveal relative bg-pop-red aspect-square neo-border neo-shadow flex items-center justify-center text-3xl font-bold text-white group overflow-hidden cursor-pointer md:col-span-2">
-    <div class="absolute inset-0 bg-[url('hero.png')] bg-cover bg-center opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
-    <div class="relative z-10 drop-shadow-md group-hover:scale-110 transition-transform">
-        🛒 SHOP NOW
-    </div>
-</div>
-
+                    <div class="absolute inset-0 bg-[url('hero.png')] bg-cover bg-center opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 drop-shadow-md group-hover:scale-110 transition-transform">
+                        🛒 SHOP NOW
+                    </div>
+                </div>
              
                 <div onclick="document.getElementById('stickers-modal').classList.remove('hidden')" class="reveal bg-zuboron aspect-square neo-border neo-shadow flex items-center justify-center text-2xl font-bold group overflow-hidden cursor-pointer">
-    <div class="group-hover:scale-110 transition-transform">STICKERS</div>
-</div>
+                    <div class="group-hover:scale-110 transition-transform">STICKERS</div>
+                </div>
 
                 <div onclick="document.getElementById('wallpaper-modal').classList.remove('hidden')" class="reveal bg-mofun aspect-square neo-border neo-shadow flex items-center justify-center text-2xl font-bold group overflow-hidden cursor-pointer">
-    <div class="group-hover:scale-110 transition-transform">WALLPAPER</div>
-</div>
-    <div id="wallpaper-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="this.parentElement.classList.add('hidden')"></div>
-        
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white neo-border neo-shadow-static p-6 text-center">
-            <h3 class="text-3xl mb-4 font-bold">WALLPAPER</h3>
-            
-            <img src="hero.png" class="w-full neo-border mb-4">
-            
-            <p class="mb-6 font-bold text-sm">画像を長押しして保存してね！</p>
-            
-            <button onclick="document.getElementById('wallpaper-modal').classList.add('hidden')" class="bg-pop-red text-white neo-border px-6 py-2 font-bold hover:bg-black transition-colors">
-                閉じる
-            </button>
-        </div>
-    </div>
-    </body>
+                    <div class="group-hover:scale-110 transition-transform">WALLPAPER</div>
+                </div>
 
                 <div onclick="drawOmikuji()" class="reveal bg-gray-100 aspect-square neo-border neo-shadow flex items-center justify-center text-2xl font-bold group overflow-hidden cursor-pointer">
-    <div class="group-hover:scale-110 transition-transform">SECRET</div>
-</div>
-
+                    <div class="group-hover:scale-110 transition-transform">SECRET</div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -213,25 +178,53 @@
             <form class="flex flex-col md:flex-row gap-4 justify-center">
                 <input type="email" placeholder="YOUR@EMAIL.COM" class="bg-white text-black neo-border px-6 py-4 text-xl font-bold outline-none w-full md:w-auto flex-1 focus:bg-pop-yellow transition-colors">
                 <button type="button" onclick="joinFanClub()" class="bg-pop-red text-white neo-border px-10 py-4 text-xl font-bold hover:bg-white hover:text-black transition-all neo-shadow shadow-white">
-    送信！
-</button>
-
+                    送信！
+                </button>
             </form>
         </div>
 
         <div class="mt-24 text-sm font-bold text-gray-500">
-            © 2024 ZUBORON & MOFUN PROJECT. ALL RIGHTS RESERVED. <br>
+            © 2026 ZUBORON & MOFUN PROJECT. ALL RIGHTS RESERVED. <br>
             DESIGNED WITH NEO-BRUTALISM LOVE.
         </div>
     </footer>
 
+    <div id="stickers-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="this.parentElement.classList.add('hidden')"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white neo-border neo-shadow-static p-8 text-center">
+            <h3 class="text-3xl mb-8 font-bold">どっちを見る？</h3>
+            <div class="flex flex-col gap-4 mb-6">
+                <a href="https://suzuri.jp/Patty17" target="_blank" class="bg-pop-yellow text-black neo-border px-6 py-4 text-xl font-bold hover:bg-white transition-colors neo-shadow flex items-center justify-center gap-2">
+                    👕 SUZURI (グッズ)
+                </a>
+                <a href="https://line.me/S/shop/sticker/author/5332770" target="_blank" class="bg-[#06C755] text-white neo-border px-6 py-4 text-xl font-bold hover:bg-white hover:text-[#06C755] transition-colors neo-shadow flex items-center justify-center gap-2">
+                    💬 LINEスタンプ
+                </a>
+            </div>
+            <button onclick="document.getElementById('stickers-modal').classList.add('hidden')" class="text-gray-500 font-bold hover:text-black underline">
+                閉じる
+            </button>
+        </div>
+    </div>
+
+    <div id="wallpaper-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="this.parentElement.classList.add('hidden')"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white neo-border neo-shadow-static p-6 text-center">
+            <h3 class="text-3xl mb-4 font-bold">WALLPAPER</h3>
+            <img src="hero.png" class="w-full neo-border mb-4">
+            <p class="mb-6 font-bold text-sm">画像を長押しして保存してね！</p>
+            <button onclick="document.getElementById('wallpaper-modal').classList.add('hidden')" class="bg-pop-red text-white neo-border px-6 py-2 font-bold hover:bg-black transition-colors">
+                閉じる
+            </button>
+        </div>
+    </div>
+
     <script>
-        // スクロールアニメーションの制御
+        // --- 1. スクロールアニメーション ---
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -239,34 +232,11 @@
                 }
             });
         }, observerOptions);
-
         document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
-    </script>
-    <div id="stickers-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="this.parentElement.classList.add('hidden')"></div>
-        
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white neo-border neo-shadow-static p-8 text-center">
-            <h3 class="text-3xl mb-8 font-bold">どっちを見る？</h3>
-            
-            <div class="flex flex-col gap-4 mb-6">
-                <a href="https://suzuri.jp/Patty17" target="_blank" class="bg-pop-yellow text-black neo-border px-6 py-4 text-xl font-bold hover:bg-white transition-colors neo-shadow flex items-center justify-center gap-2">
-                    👕 SUZURI (グッズ)
-                </a>
-                
-                <a href="https://line.me/S/shop/sticker/author/5332770" target="_blank" class="bg-[#06C755] text-white neo-border px-6 py-4 text-xl font-bold hover:bg-white hover:text-[#06C755] transition-colors neo-shadow flex items-center justify-center gap-2">
-                    💬 LINEスタンプ
-                </a>
-            </div>
-            
-            <button onclick="document.getElementById('stickers-modal').classList.add('hidden')" class="text-gray-500 font-bold hover:text-black underline">
-                閉じる
-            </button>
-        </div>
-    </div>
-        <script>
-        // おみくじ機能
+
+        // --- 2. おみくじ機能 ---
         function drawOmikuji() {
             const fortunes = [
                 "【大吉】\n今日は二度寝が許される日。\nラッキーアイテム：ふかふかの枕",
@@ -275,33 +245,21 @@
                 "【凶】\nズボロンにつまずくかも。\n足元に気をつけて！",
                 "【激レア】\nモフンが回転しながら飛んでくる夢を見るでしょう。"
             ];
-            
-            // ランダムに1つ選ぶ魔法の計算
             const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-            
-            // 結果を表示
             alert(randomFortune);
         }
-        // ファン登録機能
+
+        // --- 3. ファン登録機能 ---
         function joinFanClub() {
             const input = document.querySelector('input[type="email"]');
-            
-            // もし空っぽだったら怒る
             if (input.value === "") {
                 alert("メールアドレスを入れてね（ズボラしないで！）");
                 return;
             }
-            
-            // 送信完了メッセージ
             alert("登録ありがとう！\nズボロンからそのうち（気が向いたら）メールが届くかも…？");
-            
-            // 入力欄を空にする
             input.value = "";
         }
-
     </script>
-    </body>
-
 
 </body>
 </html>
