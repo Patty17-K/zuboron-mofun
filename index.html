@@ -175,12 +175,17 @@
             <h2 class="text-5xl md:text-7xl mb-8 leading-tight">仲間にならないか？<br><span class="text-pop-yellow">今なら古参です。</span></h2>
             <p class="mb-12 text-xl text-gray-300">最新情報、限定グッズ、ズボロンの今日の寝言をお届け。</p>
             
-            <form class="flex flex-col md:flex-row gap-4 justify-center">
-                <input type="email" placeholder="YOUR@EMAIL.COM" class="bg-white text-black neo-border px-6 py-4 text-xl font-bold outline-none w-full md:w-auto flex-1 focus:bg-pop-yellow transition-colors">
-                <button type="button" onclick="joinFanClub()" class="bg-pop-red text-white neo-border px-10 py-4 text-xl font-bold hover:bg-white hover:text-black transition-all neo-shadow shadow-white">
-                    送信！
-                </button>
-            </form>
+            <form action="https://formspree.io/f/xykzooak" method="POST" onsubmit="return joinFanClub(event)" class="flex flex-col md:flex-row gap-4 justify-center">
+    
+    <input type="email" name="email" placeholder="YOUR@EMAIL.COM" class="bg-white text-black neo-border px-6 py-4 text-xl font-bold outline-none w-full md:w-auto flex-1 focus:bg-pop-yellow transition-colors">
+    
+    <button type="submit" class="bg-pop-red text-white neo-border px-10 py-4 text-xl font-bold hover:bg-white hover:text-black transition-all neo-shadow shadow-white">
+        送信！
+    </button>
+
+</form>
+
+
         </div>
 
         <div class="mt-24 text-sm font-bold text-gray-500">
@@ -249,15 +254,21 @@
             alert(randomFortune);
         }
 
-        // --- 3. ファン登録機能 ---
-        function joinFanClub() {
+                // ファン登録機能（最強版）
+        function joinFanClub(event) {
             const input = document.querySelector('input[type="email"]');
+            
+            // 1. もし空っぽだったら...
             if (input.value === "") {
                 alert("メールアドレスを入れてね（ズボラしないで！）");
-                return;
+                
+                // 送信を「キャンセル」して止める魔法
+                event.preventDefault();
+                return false;
             }
-            alert("登録ありがとう！\nズボロンからそのうち（気が向いたら）メールが届くかも…？");
-            input.value = "";
+            
+            // 2. 空っぽじゃなければ、そのまま何もしない
+            // （そうすると、ブラウザが自動的にFormspreeへ飛んでくれます）
         }
     </script>
 
