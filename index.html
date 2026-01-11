@@ -158,16 +158,17 @@
         </div>
     </section>
 
-    <section class="py-24 px-4 bg-white pattern-grid">
+        <section class="py-24 px-4 bg-white pattern-grid">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-6xl md:text-8xl mb-16 text-center reveal">THE ARCHIVE</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <div onclick="alert('現在、絶賛執筆中！\nインスタグラムでの連載をお楽しみに！')" class="reveal bg-white aspect-square neo-border neo-shadow flex flex-col items-center justify-center font-bold group overflow-hidden cursor-pointer">
-                    <span class="text-4xl mb-2 group-hover:rotate-12 transition-transform">✏️</span>
-                    <div class="text-xl">4コマ漫画</div>
-                </div>
+                <div onclick="document.getElementById('instagram').scrollIntoView({behavior: 'smooth'})" class="reveal bg-white aspect-square neo-border neo-shadow flex flex-col items-center justify-center font-bold group overflow-hidden cursor-pointer">
+    <span class="text-4xl mb-2 group-hover:rotate-12 transition-transform">📸</span>
+    <div class="text-xl">INSTAGRAM</div>
+</div>
+
 
                 <div onclick="window.open('https://suzuri.jp/Patty17')" class="reveal relative bg-pop-red aspect-square neo-border neo-shadow flex items-center justify-center text-3xl font-bold text-white group overflow-hidden cursor-pointer md:col-span-2">
                     <div class="absolute inset-0 bg-[url('zuboron_shop.png')] bg-cover bg-center opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -186,6 +187,67 @@
 
                 <div onclick="drawOmikuji()" class="reveal bg-gray-100 aspect-square neo-border neo-shadow flex items-center justify-center text-2xl font-bold group overflow-hidden cursor-pointer">
                     <div class="group-hover:scale-110 transition-transform">SECRET</div>
+                </div>
+
+                <div onclick="location.href='games.html'" class="reveal bg-purple-500 aspect-square neo-border neo-shadow flex flex-col items-center justify-center text-white font-bold group overflow-hidden cursor-pointer">
+                    <span class="text-4xl mb-2 group-hover:scale-125 transition-transform">🎮</span>
+                    <div class="text-xl">GAMES</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="instagram" class="py-24 px-4 bg-pop-yellow border-t-4 border-black">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex flex-col md:flex-row items-center gap-4 mb-12 reveal">
+                <div class="bg-black text-white px-6 py-2 text-2xl font-bold neo-shadow -rotate-2">
+                    INSTAGRAM
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black italic">
+                    最新のズボロンを見る
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                                <a href="https://www.instagram.com/pattypatty0107?igsh=MWtqM3B4OWN0NHZ6aQ%3D%3D&utm_source=qr" target="_blank" class="reveal bg-white border-4 border-black p-6 neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer group relative overflow-hidden block text-black">
+                    
+                    <div class="absolute -right-10 -bottom-10 text-9xl opacity-10 rotate-12 group-hover:rotate-0 transition-transform">📸</div>
+
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-gray-200 rounded-full border-2 border-black overflow-hidden bg-white flex items-center justify-center text-3xl">
+                           🦄 </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">ZUBORON & MOFUN</h3>
+                            <p class="text-gray-500 font-bold">Click to Follow!</p>
+                        </div>
+                        <div class="ml-auto bg-blue-500 text-white px-4 py-1 font-bold rounded-full text-sm">Follow</div>
+                    </div>
+
+                    <div class="bg-gray-100 aspect-square border-2 border-black mb-4 flex items-center justify-center relative overflow-hidden">
+                        <span class="text-6xl group-hover:scale-110 transition-transform">✨</span>
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <span class="bg-white px-4 py-2 font-bold border-2 border-black neo-shadow">インスタへGO!</span>
+                        </div>
+                    </div>
+
+                    <p class="font-bold">
+                        <span class="font-black">zuboron:</span> インスタで最新のイラストや4コマを公開中だズボ！... <span class="text-gray-400">more</span>
+                    </p>
+                </a>
+
+                <div class="hidden md:flex flex-col justify-center items-start space-y-8 p-8">
+                    <div class="bg-white border-4 border-black p-6 neo-shadow rounded-full rounded-bl-none">
+                        <p class="text-xl font-bold">📸 ここでは見られない<br>限定イラストがあるモフ！</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-6 neo-shadow rounded-full rounded-tl-none self-end bg-pop-red text-white">
+                        <p class="text-xl font-bold">フォローして<br>監視するズボ！👀</p>
+                    </div>
+                </div>
+
+                    </div>
                 </div>
 
             </div>
