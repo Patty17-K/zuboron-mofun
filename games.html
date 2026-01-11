@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ズボロン GAME CENTER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@700&display=swap');
+        body { font-family: 'Zen Kaku Gothic New', sans-serif; background-color: #eee; }
+        .neo-border { border: 4px solid #000; box-shadow: 6px 6px 0px 0px #000; }
+        .neo-btn { transition: all 0.1s; cursor: pointer; }
+        .neo-btn:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0px 0px #000; }
+        h1, h2 { font-family: 'Dela Gothic One', cursive; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <nav class="bg-black text-white p-4 mb-8">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl text-yellow-400">GAME CENTER</h1>
+            <a href="index.html" class="bg-white text-black px-4 py-1 font-bold hover:bg-gray-200">← HOME</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 space-y-12">
+
+        <section class="bg-yellow-400 neo-border p-6 text-center">
+            <h2 class="text-3xl mb-4">🍩 無限ドーナツ</h2>
+            <p class="mb-4 font-bold">ズボロンにドーナツを食べさせろ！</p>
+            
+            <div class="bg-white p-6 neo-border max-w-sm mx-auto">
+                <div id="donut-count" class="text-6xl font-black mb-4">0</div>
+                <div id="donut-msg" class="text-gray-500 font-bold mb-4">タップしてスタート！</div>
+                
+                <button onclick="eatDonut()" class="neo-btn text-8xl transition-transform hover:scale-110 active:scale-90 select-none">
+                    🍩
+                </button>
+            </div>
+        </section>
+
+
+        <section class="bg-cyan-300 neo-border p-6 text-center">
+            <h2 class="text-3xl mb-4">🍜 3分タイマー</h2>
+            <p class="mb-4 font-bold">お湯を入れたらボタンを押すズボ！</p>
+            
+            <div class="bg-white p-6 neo-border max-w-sm mx-auto">
+                <div id="timer-display" class="text-6xl font-black mb-6 font-mono">3:00</div>
+                <div id="timer-msg" class="mb-6 font-bold text-gray-500">待機中...</div>
+                
+                <div class="flex gap-4 justify-center">
+                    <button onclick="startTimer()" class="neo-btn bg-red-500 text-white px-6 py-3 text-xl font-bold neo-border">スタート</button>
+                    <button onclick="resetTimer()" class="neo-btn bg-gray-200 text-black px-6 py-3 text-xl font-bold neo-border">リセット</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="bg-pink-300 neo-border p-6 text-center">
+            <h2 class="text-3xl mb-4">📝 あなたはどっち？</h2>
+            
+            <div id="quiz-box" class="bg-white p-6 neo-border max-w-sm mx-auto">
+                <div id="quiz-question">
+                    <div class="bg-black text-white inline-block px-3 py-1 mb-4 font-bold">Q.1</div>
+                    <h3 class="text-xl font-bold mb-8 h-16 flex items-center justify-center">休みの日は何をする？</h3>
+                    <div class="flex flex-col gap-4">
+                        <button onclick="answer(1)" class="neo-btn bg-gray-100 border-2 border-black p-4 font-bold hover:bg-yellow-200">二度寝する</button>
+                        <button onclick="answer(2)" class="neo-btn bg-gray-100 border-2 border-black p-4 font-bold hover:bg-cyan-200">外に出かける</button>
+                    </div>
+                </div>
+
+                <div id="quiz-result" class="hidden">
+                    <h3 class="text-2xl font-bold mb-4">あなたは...</h3>
+                    <div id="result-name" class="text-5xl font-black mb-4 text-red-600">ズボロン！</div>
+                    <p id="result-desc" class="font-bold mb-6">ダラダラするのが得意な才能があります。</p>
+                    <button onclick="resetQuiz()" class="text-sm underline">もう一度やる</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // --- 🍩 ドーナツゲームのプログラム ---
+        let donuts = 0;
+        function eatDonut() {
+            donuts++;
+            document.getElementById('donut-count').innerText = donuts;
+            
+            const msg = document.getElementById('donut-msg');
+            if(donuts === 10) msg.innerText = "いい食いっぷりズボ！";
+            if(donuts === 30) msg.innerText = "口のまわりが粉だらけズボ...";
+            if(donuts === 50) msg.innerText = "そろそろ限界モフ？";
+            if(donuts === 100) msg.innerText = "伝説のフードファイター！！";
+        }
+
+        // --- 🍜 タイマーのプログラム ---
+        let timeLeft = 180; // 3分 = 180秒
+        let timerId = null;
+        function startTimer() {
+            if(timerId) return; // すでに動いてたら何もしない
+            document.getElementById('timer-msg').innerText = "お湯入れたズボね？計測開始！";
+            
+            timerId = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                // 途中経過のセリフ
+                if(timeLeft === 120) document.getElementById('timer-msg').innerText = "あと2分。漫画でも読むズボ。";
+                if(timeLeft === 60) document.getElementById('timer-msg').innerText = "あと1分！箸を用意するモフ！";
+                if(timeLeft === 10) document.getElementById('timer-msg').innerText = "カウントダウン！";
+
+                if(timeLeft <= 0) {
+                    clearInterval(timerId);
+                    document.getElementById('timer-msg').innerText = "完成ズボオオオオ！！！";
+                    document.getElementById('timer-display').style.color = "red";
+                    alert("3分経ちました！食べるズボ！");
+                }
+            }, 1000);
+        }
+        function updateTimerDisplay() {
+            const m = Math.floor(timeLeft / 60);
+            const s = timeLeft % 60;
+            document.getElementById('timer-display').innerText = `${m}:${s.toString().padStart(2, '0')}`;
+        }
+        function resetTimer() {
+            clearInterval(timerId);
+            timerId = null;
+            timeLeft = 180;
+            updateTimerDisplay();
+            document.getElementById('timer-display').style.color = "black";
+            document.getElementById('timer-msg').innerText = "リセットしたズボ。";
+        }
+
+        // --- 📝 診断のプログラム ---
+        let qIndex = 0;
+        let score = 0; // プラスならズボロン、マイナスならモフン
+        const questions = [
+            { t: "休みの日は？", a: "二度寝", b: "お出かけ" },
+            { t: "部屋の片付けは？", a: "明日やる", b: "すぐやる" },
+            { t: "宝くじが当たったら？", a: "一生遊ぶ", b: "寄付する" }
+        ];
+
+        function answer(type) {
+            if(type === 1) score++; // ズボラポイント
+            else score--;           // まじめポイント
+            
+            qIndex++;
+            if(qIndex < questions.length) {
+                // 次の問題へ
+                document.querySelector('#quiz-question h3').innerText = questions[qIndex].t;
+                document.querySelectorAll('#quiz-question button')[0].innerText = questions[qIndex].a;
+                document.querySelectorAll('#quiz-question button')[1].innerText = questions[qIndex].b;
+                document.querySelector('#quiz-question .bg-black').innerText = `Q.${qIndex + 1}`;
+            } else {
+                // 結果発表
+                document.getElementById('quiz-question').classList.add('hidden');
+                document.getElementById('quiz-result').classList.remove('hidden');
+                
+                const name = document.getElementById('result-name');
+                const desc = document.getElementById('result-desc');
+                
+                if(score > 0) {
+                    name.innerText = "ズボロン級";
+                    name.className = "text-5xl font-black mb-4 text-green-600";
+                    desc.innerText = "あなたは立派なナマケモノです。明日から本気出しましょう。";
+                } else {
+                    name.innerText = "モフン級";
+                    name.className = "text-5xl font-black mb-4 text-cyan-500";
+                    desc.innerText = "あなたは真面目で優しい心の持ち主。癒やし成分100%！";
+                }
+            }
+        }
+        function resetQuiz() {
+            qIndex = 0; score = 0;
+            document.getElementById('quiz-question').classList.remove('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            // 最初の問題に戻す処理は省略（リロードでもOK）
+            location.reload();
+        }
+    </script>
+</body>
+</html>
