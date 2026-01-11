@@ -25,11 +25,18 @@
 
     <div class="max-w-4xl mx-auto px-4 space-y-12">
 
-        <section class="bg-yellow-400 neo-border p-6 text-center">
+                <section class="bg-yellow-400 neo-border p-6 text-center">
             <h2 class="text-3xl mb-4">🍩 無限ドーナツ</h2>
             <p class="mb-4 font-bold">ズボロンにドーナツを食べさせろ！</p>
             
             <div class="bg-white p-6 neo-border max-w-sm mx-auto">
+                
+                <div class="relative w-64 mx-auto mb-4 group">
+                    <div class="absolute inset-0 bg-yellow-200 rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <img id="zuboron-img" src="zuboron_eat.png" alt="ドーナツを食べるズボロン" class="relative z-10 w-full neo-border rounded-xl shadow-lg">
+                </div>
+
                 <div id="donut-count" class="text-6xl font-black mb-4">0</div>
                 <div id="donut-msg" class="text-gray-500 font-bold mb-4">タップしてスタート！</div>
                 
@@ -38,6 +45,7 @@
                 </button>
             </div>
         </section>
+
 
 
         <section class="bg-cyan-300 neo-border p-6 text-center">
@@ -81,18 +89,25 @@
     </div>
 
     <script>
-        // --- 🍩 ドーナツゲームのプログラム ---
+                // --- 🍩 ドーナツゲームのプログラム（アニメーション付き） ---
         let donuts = 0;
         function eatDonut() {
             donuts++;
             document.getElementById('donut-count').innerText = donuts;
             
+            // 画像をぷるんと揺らす魔法
+            const img = document.getElementById('zuboron-img');
+            img.classList.remove('animate-bounce'); // 一回リセット
+            void img.offsetWidth; // リセットを確定させる
+            img.classList.add('animate-bounce'); // 再生！
+
             const msg = document.getElementById('donut-msg');
             if(donuts === 10) msg.innerText = "いい食いっぷりズボ！";
-            if(donuts === 30) msg.innerText = "口のまわりが粉だらけズボ...";
+            if(donuts === 30) msg.innerText = "口のまわりがチョコだらけズボ...";
             if(donuts === 50) msg.innerText = "そろそろ限界モフ？";
             if(donuts === 100) msg.innerText = "伝説のフードファイター！！";
         }
+
 
         // --- 🍜 タイマーのプログラム ---
         let timeLeft = 180; // 3分 = 180秒
