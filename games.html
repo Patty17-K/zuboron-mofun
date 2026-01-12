@@ -25,7 +25,7 @@
 
     <div class="max-w-4xl mx-auto px-4 space-y-12">
 
-                <section class="bg-yellow-400 neo-border p-6 text-center">
+        <section class="bg-yellow-400 neo-border p-6 text-center">
             <h2 class="text-3xl mb-4">🍩 無限ドーナツ</h2>
             <p class="mb-4 font-bold">ズボロンにドーナツを食べさせろ！</p>
             
@@ -33,7 +33,6 @@
                 
                 <div class="relative w-64 mx-auto mb-4 group">
                     <div class="absolute inset-0 bg-yellow-200 rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                    
                     <img id="zuboron-img" src="zuboron_eat.png" alt="ドーナツを食べるズボロン" class="relative z-10 w-full neo-border rounded-xl shadow-lg">
                 </div>
 
@@ -43,10 +42,12 @@
                 <button onclick="eatDonut()" class="neo-btn text-8xl transition-transform hover:scale-110 active:scale-90 select-none">
                     🍩
                 </button>
+
+                <button onclick="shareScore()" class="mt-8 bg-black text-white neo-border px-6 py-2 font-bold text-sm hover:bg-gray-800 flex items-center justify-center gap-2 mx-auto w-full">
+                    <span>🐦</span> 結果をXで自慢する
+                </button>
             </div>
         </section>
-
-
 
         <section class="bg-cyan-300 neo-border p-6 text-center">
             <h2 class="text-3xl mb-4">🍜 5分タイマー</h2>
@@ -62,7 +63,6 @@
                 </div>
             </div>
         </section>
-
 
         <section class="bg-pink-300 neo-border p-6 text-center">
             <h2 class="text-3xl mb-4">📝 あなたはどっち？</h2>
@@ -89,17 +89,17 @@
     </div>
 
     <script>
-                // --- 🍩 ドーナツゲームのプログラム（アニメーション付き） ---
+        // --- 🍩 ドーナツゲームのプログラム ---
         let donuts = 0;
         function eatDonut() {
             donuts++;
             document.getElementById('donut-count').innerText = donuts;
             
-            // 画像をぷるんと揺らす魔法
+            // 画像アニメーション
             const img = document.getElementById('zuboron-img');
-            img.classList.remove('animate-bounce'); // 一回リセット
-            void img.offsetWidth; // リセットを確定させる
-            img.classList.add('animate-bounce'); // 再生！
+            img.classList.remove('animate-bounce');
+            void img.offsetWidth; 
+            img.classList.add('animate-bounce');
 
             const msg = document.getElementById('donut-msg');
             if(donuts === 10) msg.innerText = "いい食いっぷりズボ！";
@@ -108,19 +108,28 @@
             if(donuts === 100) msg.innerText = "伝説のフードファイター！！";
         }
 
+        // --- 🐦 Xでシェアする機能 ---
+        function shareScore() {
+            const currentDonuts = donuts; 
+            const text = `ズボロンにドーナツを【${currentDonuts}個】食べさせたズボ！🍩💨\n伝説のフードファイターを目指せ！\n\n#ズボロン #無限ドーナツ`;
+            const url = "https://patty17-k.github.io/zuboron-mofun/";
+            
+            // Xを開く
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        }
 
-        // --- 🍜 タイマーのプログラム ---
-        let timeLeft = 180; // 3分 = 180秒
+        // --- 🍜 5分タイマーのプログラム（修正済み） ---
+        let timeLeft = 300; // 5分 = 300秒に修正しました！
         let timerId = null;
+        
         function startTimer() {
-            if(timerId) return; // すでに動いてたら何もしない
+            if(timerId) return;
             document.getElementById('timer-msg').innerText = "お湯入れたズボね？計測開始！";
             
             timerId = setInterval(() => {
                 timeLeft--;
                 updateTimerDisplay();
                 
-                // 途中経過のセリフ
                 if(timeLeft === 120) document.getElementById('timer-msg').innerText = "あと2分。漫画でも読むズボ。";
                 if(timeLeft === 60) document.getElementById('timer-msg').innerText = "あと1分！箸を用意するモフ！";
                 if(timeLeft === 10) document.getElementById('timer-msg').innerText = "カウントダウン！";
@@ -129,7 +138,7 @@
                     clearInterval(timerId);
                     document.getElementById('timer-msg').innerText = "完成ズボオオオオ！！！";
                     document.getElementById('timer-display').style.color = "red";
-                    alert("3分経ちました！食べるズボ！");
+                    alert("5分経ちました！食べるズボ！");
                 }
             }, 1000);
         }
@@ -141,7 +150,7 @@
         function resetTimer() {
             clearInterval(timerId);
             timerId = null;
-            timeLeft = 180;
+            timeLeft = 300; // リセット時も5分に戻るように修正
             updateTimerDisplay();
             document.getElementById('timer-display').style.color = "black";
             document.getElementById('timer-msg').innerText = "リセットしたズボ。";
@@ -149,7 +158,7 @@
 
         // --- 📝 診断のプログラム ---
         let qIndex = 0;
-        let score = 0; // プラスならズボロン、マイナスならモフン
+        let score = 0;
         const questions = [
             { t: "休みの日は？", a: "二度寝", b: "お出かけ" },
             { t: "部屋の片付けは？", a: "明日やる", b: "すぐやる" },
@@ -157,18 +166,16 @@
         ];
 
         function answer(type) {
-            if(type === 1) score++; // ズボラポイント
-            else score--;           // まじめポイント
+            if(type === 1) score++; 
+            else score--;           
             
             qIndex++;
             if(qIndex < questions.length) {
-                // 次の問題へ
                 document.querySelector('#quiz-question h3').innerText = questions[qIndex].t;
                 document.querySelectorAll('#quiz-question button')[0].innerText = questions[qIndex].a;
                 document.querySelectorAll('#quiz-question button')[1].innerText = questions[qIndex].b;
                 document.querySelector('#quiz-question .bg-black').innerText = `Q.${qIndex + 1}`;
             } else {
-                // 結果発表
                 document.getElementById('quiz-question').classList.add('hidden');
                 document.getElementById('quiz-result').classList.remove('hidden');
                 
@@ -190,7 +197,6 @@
             qIndex = 0; score = 0;
             document.getElementById('quiz-question').classList.remove('hidden');
             document.getElementById('quiz-result').classList.add('hidden');
-            // 最初の問題に戻す処理は省略（リロードでもOK）
             location.reload();
         }
     </script>
