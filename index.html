@@ -85,9 +85,10 @@
 
     <nav class="fixed top-0 left-0 w-full z-50 p-4 pointer-events-none">
         <div class="flex justify-between items-center max-w-7xl mx-auto pointer-events-auto">
-            <div class="bg-white neo-border px-4 py-2 text-xl font-bold neo-shadow cursor-pointer rotate-1">
-                Z&M
-            </div>
+            <div onclick="secretCommand()" class="bg-white neo-border px-4 py-2 text-xl font-bold neo-shadow cursor-pointer rotate-1 select-none active:scale-95 transition-transform">
+    Z&M
+</div>
+
             <a href="#join" class="bg-pop-yellow neo-border px-6 py-2 font-bold neo-shadow hover:bg-yellow-300 transition-colors -rotate-1">
                 ファンになる
             </a>
@@ -356,6 +357,39 @@
             // 2. 空っぽじゃなければ、そのまま何もしない
             // （そうすると、ブラウザが自動的にFormspreeへ飛ぶ）
         }
+
+        // --- 👿 隠しコマンド（レインボーモード） ---
+        let tapCount = 0;
+        let resetTimer;
+
+        function secretCommand() {
+            tapCount++;
+            
+            // 途中で止めるとリセットされる
+            clearTimeout(resetTimer);
+            resetTimer = setTimeout(() => { tapCount = 0; }, 500);
+
+            // 7回タップ成功したら発動！
+            if (tapCount === 7) {
+                alert("🎉 裏モード突入ズボ！パーティーの始まりだモフ！ 🎉");
+                
+                // 画面をレインボーにする魔法
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes rainbow { 
+                        0%{filter: hue-rotate(0deg);} 
+                        100%{filter: hue-rotate(360deg);} 
+                    }
+                    body { animation: rainbow 2s linear infinite; }
+                    img { animation: spin 3s linear infinite !important; }
+                    @keyframes spin { 100% { transform: rotate(360deg); } }
+                `;
+                document.head.appendChild(style);
+                
+                tapCount = 0; // カウントリセット
+            }
+        }
+
     </script>
 
 </body>
